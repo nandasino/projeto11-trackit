@@ -139,7 +139,7 @@ const Container = styled.section`
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: ${(props) => (props.disabled ? "0.7" : "1")};
+    opacity: ${(props) => (props.desabilitado ? "0.7" : "1")};
   }
   a {
     color: #52b6ff;

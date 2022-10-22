@@ -7,7 +7,11 @@ function postLogin(login) {
     return promise;
   }
 
-
+function postCadastro(cadastro){
+  const promise = axios.post(`${BASE_URL}/auth/sign-up`, cadastro);
+  return promise;
+}
 export {
     postLogin,
+    postCadastro,
 }  

@@ -2,22 +2,45 @@ import { useContext, useState } from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
+import { postSignIn } from "./services/services"
 
 import UserContext from "./context/UserContext";
 import Logo from "../assets/Logo.svg";
 
-export default function login(){
+export default function Login(){
   const [desabilitado, setDesabilitado] = useState(false);
   const [loginUsuario, setLoginUsuario] = useState({});
   const [mostraSenha, setMostraSenha] = useState("password");  
 
-  function atualizaImput(element) {
-    setLoginUsuario({ ...loginUsuario, [element.target.name]: element.target.value });
+  const { setUser } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  function atualizaImput(e) {
+    setLoginUsuario({
+        ...loginUsuario,
+        [e.target.name]: e.target.value
+    })
   }
   
-    function enviaForm(){
-        alert("opa")
+    function enviaForm(e){
+      e.preventDefault();
+      setDesabilitado(true);
+      postSignIn(loginUsuario).then((response) => {
+        setUser(response.data);
+        const JSONauth = JSON.stringify({
+          token: response.data.token,
+          image: response.data.image,
+        });
+        localStorage.setItem("trackit", JSONauth);
+        setDesabilitado(false);
+        navigate("/hoje");
+      })
+      .catch((error) => {
+        alert("E-mail ou senha incorretos!");
+        setDesabilitado(false);
+      });     
     }
+
     return(
     <Container desabilitado={desabilitado}>
       <img src={Logo} alt="Logo" />

@@ -19,8 +19,20 @@ export default function Cadastro(){
         setpreencheForm({ ...preencheForm, [element.target.name]: element.target.value });
     }
 
-    function enviaForm(){
-        alert("envia form");
+    function enviaForm(e){
+        e.preventDefault();
+        setDesabilitado(true);
+    
+        postCadastro(preencheForm)
+          .then((response) => {
+            navigate("/");
+          })
+          .catch((error) => {
+            setDesabilitado(false);
+            alert(`
+          ${error.response.data.message} 
+          Por favor preencha os campos novamente.`);
+          });
     }
     return(
         <Container>

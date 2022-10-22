@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
-import { postSignIn } from "./services/services"
+import { postLogin } from "./services/services"
 
 import UserContext from "./context/UserContext";
 import Logo from "../assets/Logo.svg";
@@ -25,7 +25,7 @@ export default function Login(){
     function enviaForm(e){
       e.preventDefault();
       setDesabilitado(true);
-      postSignIn(loginUsuario).then((response) => {
+      postLogin(loginUsuario).then((response) => {
         setUser(response.data);
         const JSONauth = JSON.stringify({
           token: response.data.token,

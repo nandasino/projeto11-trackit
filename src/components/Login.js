@@ -25,6 +25,7 @@ export default function Login(){
     function enviaForm(e){
       e.preventDefault();
       setDesabilitado(true);
+      console.log(loginUsuario);
       postLogin(loginUsuario).then((response) => {
         setUser(response.data);
         const JSONauth = JSON.stringify({
@@ -38,6 +39,7 @@ export default function Login(){
       .catch((error) => {
         alert("E-mail ou senha incorretos!");
         setDesabilitado(false);
+        console.log(error);
       });     
     }
 

@@ -7,6 +7,7 @@ import { postCadastro } from "./services/services";
 
 export default function Cadastro(){
     const navigate = useNavigate();
+    
     const [desabilitado, setDesabilitado] = useState(false);
     const [preencheForm, setpreencheForm] = useState({
       email: "",

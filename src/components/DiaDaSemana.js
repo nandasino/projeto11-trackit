@@ -2,7 +2,7 @@ import styled from "styled-components";
 import UserContext from "./context/UserContext";
 import { useContext, useEffect, useState } from "react";
 
-export default function DiaDaSemana({children, days, setDays, key}){
+export default function DiaDaSemana({children, days, setDays, dayNumber}){
     const { atualiza } = useContext(UserContext);
     const [selecionado,setSelecionado]=useState(false);
 
@@ -12,13 +12,13 @@ useEffect(()=>{
 switch (selecionado){
     case false:
         return(
-            <DivDia selecionado={selecionado} onClick={()=>{setSelecionado(!selecionado); setDays([...days,key])}}>
+            <DivDia selecionado={selecionado} onClick={()=>{setSelecionado(!selecionado); setDays([...days,dayNumber])}}>
             {children}
             </DivDia>
         );
     case true:
         return(
-            <DivDia selecionado={selecionado} onClick={()=>{setSelecionado(!selecionado); setDays((e)=>e.filter((days)=>days!==key))}}>
+            <DivDia selecionado={selecionado} onClick={()=>{setSelecionado(!selecionado); setDays((e)=>e.filter((days)=>days!==dayNumber))}}>
             {children}
             </DivDia>
         );

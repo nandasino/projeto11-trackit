@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import UserContext from "./context/UserContext";
 import { ThreeDots } from "react-loader-spinner";
 import DiaDasemana from "./DiaDaSemana"
+import {postHabito} from "./services/services"
 
 export default function FormularioHabito({criarHabito,setCriarHabito}){
     const letras= ["D", "S", "T", "Q", "Q", "S", "S"];
@@ -10,8 +11,32 @@ export default function FormularioHabito({criarHabito,setCriarHabito}){
     const [days,setDays]=useState([]);
     const [habit, setHabit]= useState({name: "", days,});
     const {atualiza,setAtualiza}= useContext(UserContext);
-function enviarHabito(){
-    alert("enviando");
+
+useEffect(() => {
+  setHabit({ ...habit, days });
+}, [days]);
+
+function enviarHabito(e){
+    e.preventDefault();
+    setDisabled(!disabled);
+    console.log(habit);
+    postHabito(habit)
+      .then((res) => {
+        setDisabled(false);
+        setAtualiza(!atualiza);
+        setCriarHabito(false);
+        setDays([]);
+        setHabit({
+          name: "",
+          days,
+        });
+      })
+      .catch((error) => {
+        alert(
+          "Campos inválidos, verifique se selecionou pelo menos um dia e colocou um nome para seu hábito!"
+        );
+        setDisabled(false);
+      });
 }
 function preencheImput(e) {
     setHabit({ ...habit, [e.target.name]: e.target.value });
@@ -35,6 +60,7 @@ function preencheImput(e) {
               days={days}
               setDays={setDays}
               key={index}
+              dayNumber={index}
               >{day}</DiaDasemana>
           ))}
         </DivDias>

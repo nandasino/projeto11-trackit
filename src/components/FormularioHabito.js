@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useContext, useEffect, useState } from "react";
 import UserContext from "./context/UserContext";
 import { ThreeDots } from "react-loader-spinner";
-//import DiaDasemana from "./DiaDaSemana"
+import DiaDasemana from "./DiaDaSemana"
 
 export default function FormularioHabito({criarHabito,setCriarHabito}){
     const letras= ["D", "S", "T", "Q", "Q", "S", "S"];
@@ -31,7 +31,11 @@ function preencheImput(e) {
         />
         <DivDias>
           {letras.map((day, index) => (
-              <DiaDasemana>{day}</DiaDasemana>
+              <DiaDasemana 
+              days={days}
+              setDays={setDays}
+              key={index}
+              >{day}</DiaDasemana>
           ))}
         </DivDias>
         <Botoes disabled={disabled}>
@@ -118,6 +122,3 @@ const DivDias = styled.section`
     margin-left: 4px;
   }
 `;
-const DiaDasemana=styled.div`
-  width:20px;
-`

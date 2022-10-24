@@ -1,8 +1,10 @@
 import styled from "styled-components";
 import { useContext } from "react";
 import UserContext from "./context/UserContext";
+import {deletaHabito} from "./services/services"
 
 export default function Habito({habit,daysSelected}){
+    const { setAtualiza, atualiza } = useContext(UserContext);
     const dias = [
         { dia: "domingo", id: 0, sigla: "D" },
         { dia: "segunda", id: 1, sigla: "S" },
@@ -13,7 +15,11 @@ export default function Habito({habit,daysSelected}){
         { dia: "sabado", id: 6, sigla: "S" },
       ];
     function excluiHabito(){
-        alert("exclui");
+            deletaHabito(habit.id)
+              .then((resp) => {
+                setAtualiza(!atualiza);
+              })
+              .catch((error) => alert("Ocorreu um erro ao deletar o hábito!"));
     }
     return(
         <Container>
@@ -46,6 +52,7 @@ const Container = styled.section`
     top: 15px;
     right: 15px;
     color: #666666;
+    cursor:pointer;
   }
 `;
 
@@ -70,7 +77,7 @@ const DivHabito = styled.div`
 
 const CheckBox = styled.div`
     color: #dbdbdb;
-    background-color: #ffffff;  
+    background-color: #ffffff;      
   &.marcada{
     color: #ffffff;
     background-color: #d4d4d4; 

@@ -32,10 +32,15 @@ function postHabito(habit) {
   const promise = axios.post(`${BASE_URL}/habits`, habit, config);
   return promise;
 }
-
+function deletaHabito(habitId) {
+  const config = createHeaders();
+  const promise = axios.delete(`${BASE_URL}/habits/${habitId}`, config);
+  return promise;
+}
 export {
     postLogin,
     postCadastro,
     pegaHabitos,
-    postHabito
+    postHabito,
+    deletaHabito,
 }  

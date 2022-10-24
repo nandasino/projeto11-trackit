@@ -23,7 +23,7 @@ export default function Habitos(){
             <h1>Meus hábitos</h1>
             <button disabled={criarHabito} onClick={() => {setCriarHabito(true);}}>+</button>
           </span>
-          <FormularioHabito criar={criarHabito} setCriarHabito={setCriarHabito} />
+          <FormularioHabito criarHabito={criarHabito} setCriarHabito={setCriarHabito} />
           <CaixaHabito>
             {habitosUsuario.length === 0 ? 
               <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>

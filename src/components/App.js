@@ -8,7 +8,7 @@ import Cadastro from "./Cadastro"
 import Habitos from "./Habitos"
 
 import PaginaPrivada from "./PaginaPrivada"
-import Hoje from "./Hoje/Hoje"
+import Hoje from "./Hoje"
 
 
 export default function App(){

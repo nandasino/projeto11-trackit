@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import { useState } from "react";
-import { Grid } from "react-loader-spinner";
 import checkImg from ".././assets/check.svg";
+import {checkHabito} from "./services/services";
+import {desmarcaHabito} from "./services/services";
 
 export default function HabitoDeHoje({habitosDeHoje,setAtualiza,atualiza}){
     const [disable, setDisable] = useState(false);
@@ -9,11 +10,23 @@ export default function HabitoDeHoje({habitosDeHoje,setAtualiza,atualiza}){
     const isHigh = (habitosDeHoje.currentSequence >= habitosDeHoje.highestSequence);
 
     function check() {
-        alert("marca")
+    setDisable(true);
+    checkHabito(habitosDeHoje.id)
+      .then((response) => {
+        setAtualiza(!atualiza);
+        setDisable(false);
+      })
+      .catch((error) => alert("Ocorreu um erro ao marcar o hábito!"));
       }
     
       function tiraCheck() {
-        alert("desmarca")
+        setDisable(true);
+        desmarcaHabito(habitosDeHoje.id)
+          .then((response) => {
+            setAtualiza(!atualiza);
+            setDisable(false);
+          })
+          .catch((error) => alert("Ocorreu um erro ao desmarcar o hábito!"));
       }
     return(
     <Container done={done}>
@@ -29,19 +42,11 @@ export default function HabitoDeHoje({habitosDeHoje,setAtualiza,atualiza}){
       </DivTexto>
       {done ? (
         <CheckBox onClick={tiraCheck} check={done}>
-          {disable ? (
-            <Grid color="#FFFFFF" height={30} width={30} />
-          ) : (
             <img src={checkImg} alt="check" />
-          )}
         </CheckBox>
       ) : (
         <CheckBox onClick={check} check={done}>
-          {disable ? (
-            <Grid color="#8FC549" height={30} width={30} />
-          ) : (
             <img src={checkImg} alt="tiraCheck" />
-          )}
         </CheckBox>
       )}
     </Container>        
@@ -66,6 +71,7 @@ const CheckBox = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor:pointer;
 `;
 const Recorde = styled.strong`
   color: ${(props) => (props.isHigh && props.done ? "#8fc549" : "#666666")};

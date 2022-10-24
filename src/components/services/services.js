@@ -42,6 +42,25 @@ function pegaHabitosHoje() {
   const promise = axios.get(`${BASE_URL}/habits/today`, config);
   return promise;
 }
+function checkHabito(habitId) {
+  const config = createHeaders();
+  const promise = axios.post(
+    `${BASE_URL}/habits/${habitId}/check`, 
+    {}, 
+    config
+    );
+  return promise;
+}
+
+function desmarcaHabito(habitId) {
+  const config = createHeaders();
+  const promise = axios.post(
+    `${BASE_URL}/habits/${habitId}/uncheck`,
+    {},
+    config
+  );
+  return promise;
+}
 export {
     postLogin,
     postCadastro,
@@ -49,4 +68,6 @@ export {
     postHabito,
     deletaHabito,
     pegaHabitosHoje,
+    checkHabito,
+    desmarcaHabito,
 }  

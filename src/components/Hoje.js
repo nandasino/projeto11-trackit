@@ -43,7 +43,7 @@ export default function Hoje(){
         <>
         <Container>
           <Texto>
-            <h1>{hoje}</h1>
+            <h1 data-identifier="today-infos">{hoje}</h1>
             {porcentagem <= 0 ? (
               <h2>Nenhum hábito concluído ainda</h2>
             ) : (

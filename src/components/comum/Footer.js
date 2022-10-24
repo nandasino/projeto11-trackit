@@ -11,7 +11,7 @@ export default function Footer() {
 
   return (
     <Container>
-      <Link to="/habitos">Hábitos</Link>
+      <Link data-identifier="habit-page-action" to="/habitos">Hábitos</Link>
       <Link to="/hoje">
         <DivCirculo>
           <CircularProgressbar
@@ -28,7 +28,7 @@ export default function Footer() {
           />
         </DivCirculo>
       </Link>
-      <Link to="/historico">Histórico</Link>
+      <Link data-identifier="historic-page-action" to="/historico">Histórico</Link>
     </Container>
   );
 }

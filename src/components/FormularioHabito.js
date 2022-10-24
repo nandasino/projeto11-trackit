@@ -45,7 +45,7 @@ function preencheImput(e) {
     return(
     <Container criarHabito={criarHabito}>
       <form onSubmit={enviarHabito}>
-        <input
+        <input data-identifier="input-habit-name"
           autoComplete="off"
           disabled={disabled}
           onChange={preencheImput}
@@ -65,14 +65,14 @@ function preencheImput(e) {
           ))}
         </DivDias>
         <Botoes disabled={disabled}>
-          <h5
+          <h5 data-identifier="cancel-habit-create-btn"
             onClick={() => {
               setCriarHabito(false);
             }}
           >
             Cancelar
           </h5>
-          <button disabled={disabled} type="submit">
+          <button data-identifier="save-habit-create-btn" disabled={disabled} type="submit">
             {!disabled ? (
               "Salvar"
             ) : (

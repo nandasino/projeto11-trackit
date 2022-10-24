@@ -39,7 +39,7 @@ export default function Cadastro(){
         <Container>
         <img src={Logo} alt="Logo" />
         <form onSubmit={enviaForm}>
-          <input
+          <input data-identifier="input-email"
             desabilitado={desabilitado}
             required
             value={preencheForm.email}
@@ -48,7 +48,7 @@ export default function Cadastro(){
             placeholder="email"
             onChange={atualizaImput}
           />
-          <input
+          <input data-identifier="input-password"
             desabilitado={desabilitado}
             required
             value={preencheForm.password}
@@ -57,7 +57,7 @@ export default function Cadastro(){
             placeholder="senha"
             onChange={atualizaImput}
           />
-          <input
+          <input data-identifier="input-name"
             desabilitado={desabilitado}
             required
             value={preencheForm.name}
@@ -66,7 +66,7 @@ export default function Cadastro(){
             placeholder="nome"
             onChange={atualizaImput}
           />
-          <input
+          <input data-identifier="input-photo"
             desabilitado={desabilitado}
             required
             value={preencheForm.image}
@@ -83,7 +83,7 @@ export default function Cadastro(){
             )}
           </button>
         </form>
-        <Link to="/">Já tem uma conta? Faça login!</Link>
+        <Link data-identifier="back-to-login-action" to="/">Já tem uma conta? Faça login!</Link>
       </Container>
     );
 }

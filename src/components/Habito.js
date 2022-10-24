@@ -23,13 +23,13 @@ export default function Habito({habit,daysSelected}){
     }
     return(
         <Container>
-            <h1>{habit.name}</h1>
+            <h1 data-identifier="habit-name">{habit.name}</h1>
             <DivHabito>
                 {dias.map((day,key)=>daysSelected.includes(day.id)?(<CheckBox className="marcada" key={key}>{day.sigla}</CheckBox>)
                 :
                 (<CheckBox key={key}>{day.sigla}</CheckBox>))}
             </DivHabito>
-            <ion-icon onClick={excluiHabito} name="trash-outline"></ion-icon>
+            <ion-icon data-identifier="delete-habit-btn" onClick={excluiHabito} name="trash-outline"></ion-icon>
         </Container>
     )
 }

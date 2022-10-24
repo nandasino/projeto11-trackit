@@ -6,7 +6,7 @@ export default function Navbar({image}) {
         <ContainerNavibar>
             <div>
                 <h1>TrackIt</h1>
-                <img src={image} alt="User"/>
+                <img data-identifier="avatar" src={image} alt="User"/>
             </div>
         </ContainerNavibar>
     );

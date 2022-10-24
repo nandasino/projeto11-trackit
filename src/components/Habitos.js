@@ -21,12 +21,12 @@ export default function Habitos(){
         <ContinerHabitos>
           <span>
             <h1>Meus hábitos</h1>
-            <button disabled={criarHabito} onClick={() => {setCriarHabito(true);}}>+</button>
+            <button data-identifier="create-habit-btn" disabled={criarHabito} onClick={() => {setCriarHabito(true);}}>+</button>
           </span>
           <FormularioHabito criarHabito={criarHabito} setCriarHabito={setCriarHabito} />
           <CaixaHabito>
             {habitosUsuario.length === 0 ? 
-              <p>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
+              <p data-identifier="no-habit-message">Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</p>
                : 
               habitosUsuario.map((habit, key) => (
                 <Habito habit={habit} key={key} daysSelected={habit.days} />

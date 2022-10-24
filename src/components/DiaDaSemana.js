@@ -12,13 +12,13 @@ useEffect(()=>{
 switch (selecionado){
     case false:
         return(
-            <DivDia selecionado={selecionado} onClick={()=>{setSelecionado(!selecionado); setDays([...days,dayNumber])}}>
+            <DivDia data-identifier="week-day-btn" selecionado={selecionado} onClick={()=>{setSelecionado(!selecionado); setDays([...days,dayNumber])}}>
             {children}
             </DivDia>
         );
     case true:
         return(
-            <DivDia selecionado={selecionado} onClick={()=>{setSelecionado(!selecionado); setDays((e)=>e.filter((days)=>days!==dayNumber))}}>
+            <DivDia data-identifier="week-day-btn" selecionado={selecionado} onClick={()=>{setSelecionado(!selecionado); setDays((e)=>e.filter((days)=>days!==dayNumber))}}>
             {children}
             </DivDia>
         );

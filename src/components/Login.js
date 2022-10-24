@@ -47,7 +47,7 @@ export default function Login(){
     <Container desabilitado={desabilitado}>
       <img src={Logo} alt="Logo" />
       <form onSubmit={enviaForm}>
-        <input
+        <input data-identifier="input-email"
           autoComplete="off"
           required
           desabilitado={desabilitado}
@@ -57,7 +57,7 @@ export default function Login(){
           onChange={atualizaImput}
         />
         <DivImput>
-          <input
+          <input data-identifier="input-password"
             required
             desabilitado={desabilitado}
             name="password"
@@ -77,7 +77,7 @@ export default function Login(){
             ></ion-icon>
           </div>
         </DivImput>
-        <button desabilitado={desabilitado} type="submit">
+        <button data-identifier="login-btn" desabilitado={desabilitado} type="submit">
           {!desabilitado ? (
             "Entrar"
           ) : (
@@ -85,7 +85,7 @@ export default function Login(){
           )}
         </button>
       </form>
-      <Link to={`/cadastro`}>Não tem uma conta? Cadastre-se!</Link>
+      <Link data-identifier="sign-up-action" to={`/cadastro`}>Não tem uma conta? Cadastre-se!</Link>
     </Container>
     )
 }

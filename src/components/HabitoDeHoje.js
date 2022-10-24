@@ -30,7 +30,7 @@ export default function HabitoDeHoje({habitosDeHoje,setAtualiza,atualiza}){
       }
     return(
     <Container done={done}>
-      <DivTexto>
+      <DivTexto data-identifier="today-infos">
         <h2>{habitosDeHoje.name}</h2>
         <p>
           Sequência atual:{" "}
@@ -41,7 +41,7 @@ export default function HabitoDeHoje({habitosDeHoje,setAtualiza,atualiza}){
         </p>
       </DivTexto>
       {done ? (
-        <CheckBox onClick={tiraCheck} check={done}>
+        <CheckBox data-identifier="done-habit-btn" onClick={tiraCheck} check={done}>
             <img src={checkImg} alt="check" />
         </CheckBox>
       ) : (

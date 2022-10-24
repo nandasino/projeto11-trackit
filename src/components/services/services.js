@@ -11,7 +11,12 @@ function postCadastro(cadastro){
   const promise = axios.post(`${BASE_URL}/auth/sign-up`, cadastro);
   return promise;
 }
+function pegaHabitos(config){
+  const promise = axios.get(`${BASE_URL}/habits`, config);
+  return promise;
+}
 export {
     postLogin,
     postCadastro,
+    pegaHabitos,
 }  

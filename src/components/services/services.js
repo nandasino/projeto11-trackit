@@ -37,10 +37,16 @@ function deletaHabito(habitId) {
   const promise = axios.delete(`${BASE_URL}/habits/${habitId}`, config);
   return promise;
 }
+function pegaHabitosHoje() {
+  const config = createHeaders();
+  const promise = axios.get(`${BASE_URL}/habits/today`, config);
+  return promise;
+}
 export {
     postLogin,
     postCadastro,
     pegaHabitos,
     postHabito,
     deletaHabito,
+    pegaHabitosHoje,
 }  

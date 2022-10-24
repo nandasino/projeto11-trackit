@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import UserContext from "./context/UserContext";
 import HabitoDeHoje from "./HabitoDeHoje";
+import { pegaHabitosHoje } from "./services/services";
 
 import dayjs from "dayjs";
 import updateLocale from "dayjs/plugin/updateLocale";
@@ -21,6 +22,23 @@ export default function Hoje(){
     
     const hoje = dayjs().locale("pt-br").format("dddd, DD/MM");
 
+    useEffect(() => {
+        pegaHabitosHoje()
+          .then((response) => {
+            setHabitosDeHoje(response.data);
+            const done = response.data.filter((e) => e.done);
+            const porcentagemHoje = Math.ceil(
+              (done.length / response.data.length) * 100
+              );
+            if (isNaN(porcentagemHoje)) {
+              setPorcentagem(0);
+            } else {
+              setPorcentagem(porcentagemHoje);
+            }
+          })
+          .catch((error) => alert("Ocorreu um erro ao ver os hábitos do dia!"));
+        }, [atualiza]);
+
     return(
         <>
         <Container>
@@ -37,7 +55,7 @@ export default function Hoje(){
               <HabitoDeHoje
                 key={index}
                 habitosDeHoje={habit}
-                setAtualiza={atualiza}
+                setAtualiza={setAtualiza}
                 atualiza={atualiza}
               />
             ))}
